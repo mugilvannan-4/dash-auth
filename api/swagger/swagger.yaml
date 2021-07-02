@@ -1,0 +1,96 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Curd APIs
+# during dev, should point to your local machine
+host: localhost:32008
+# basePath prefixes all resource paths 
+basePath: /user
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  #- https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /register:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: controller
+    post:
+      description: Create record in DB
+      # used as the method name of the controller
+      operationId: create
+      parameters:
+        - name: data
+          in: body
+          description: Reqgister user information
+          schema:
+            $ref: '#/definitions/Request'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /authenticate:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: controller
+    post:
+      description: Create record in DB
+      # used as the method name of the controller
+      operationId: authenticate
+      parameters:
+        - name: data
+          in: body
+          description: authenticate the user
+          schema:
+            $ref: '#/definitions/Request'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /getall:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: controller
+    get:
+      description: Generates event outcome for the event logs in each channel
+      # used as the method name of the controller
+      operationId: getall
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw 
+definitions:
+  Request:
+    type: object
+  SuccessResponse:
+    type: object
+  ErrorResponse:
+      type: object
+ 
