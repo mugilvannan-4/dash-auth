@@ -84,6 +84,30 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /googleauth:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: google
+    post:
+      description: Auth google sign-in
+      # used as the method name of the controller
+      operationId: googleAuth
+      parameters:
+        - name: data
+          in: body
+          description: authenticate the user
+          schema:
+            $ref: '#/definitions/Request'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw 
 definitions:

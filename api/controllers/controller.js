@@ -37,6 +37,7 @@ async function authenticate(req,res) {
         console.log("Authenticated");
         const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '10m' });
         const resp = {
+            success: true, 
             ...user.toJSON(),
             token
         };
@@ -50,7 +51,8 @@ async function authenticate(req,res) {
         res.status(200).send(resp);
         
     } else {
-        res.status(200).send({ message : "Invalid Username or Password"});
+        console.log("Failed")
+        res.status(200).send({  success: false, error : "Invalid Username or Password"});
     }
     
    

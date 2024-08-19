@@ -11,8 +11,11 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.12.3",
+    "google-auth-library": "^9.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.14",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "swagger-express-mw": "^0.7.0"
   },
   "devDependencies": {

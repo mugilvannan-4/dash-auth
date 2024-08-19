@@ -1,6 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
-const mongourl = 'mongodb+srv://admin:lkpsmmv@cluster0.nmn3s.mongodb.net/test?authSource=admin&replicaSet=atlas-cz2iwc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
+const mongourl = process.env.MONGO_URL || 'mongodb://18.61.253.6:27017/poc';
 mongoose.connect(mongourl, {}, err =>{
   if(err) {
     console.log(err);
